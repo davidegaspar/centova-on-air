@@ -4,5 +4,13 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <App
+    url="http://178.32.239.25:2199/rpc/dagaspar/streaminfo.get"
+    onair="onair.png"
+    offair="offair.png"
+    noplaylist="noplaylist.png"
+  />,
+  document.getElementById('root')
+);
 registerServiceWorker();
