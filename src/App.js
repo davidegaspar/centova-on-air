@@ -22,13 +22,18 @@ class App extends Component {
       // this.setState({requestInProgress: false});
       if (request.status >= 200 && request.status < 400) {
         let resp=JSON.parse(request.responseText);console.log(resp);
-        // console.log(resp.data[0].track.hasOwnProperty('playlist') ? resp.data[0].track.playlist.title : '');
-        this.setState({
-          onair: true,
-          playlist: resp.data[0].track.hasOwnProperty('playlist') ? resp.data[0].track.playlist.title : null,
-          artist: resp.data[0].track.artist,
-          title: resp.data[0].track.title
-        });
+        if (resp.type === 'result') {
+          this.setState({
+            onair: true,
+            playlist: resp.data[0].track.hasOwnProperty('playlist') ? resp.data[0].track.playlist.title : null,
+            artist: resp.data[0].track.artist || '',
+            title: resp.data[0].track.title || ''
+          });
+        } else {
+          this.setState({
+            onair: false
+          });
+        }
       }else{
         this.setState({
           onair: false
@@ -49,15 +54,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="Playlist">
-          <img src={this.state.onair ? this.props.onair : this.props.offair} alt=""></img>
-          <img src={this.state.playlist || this.props.noplaylist} alt=""></img>
+        <div className="Info">
+          <div className="Playlist">
+            <span>{this.state.playlist}</span>
+          </div>
+          <div className="Artist">
+            <span>{this.state.artist}</span>
+          </div>
+          <div className="Title">
+            <span>{this.state.title}</span>
+          </div>
         </div>
-        <div className="Artist">
-          <span>{this.state.artist}</span>
-        </div>
-        <div className="Title">
-          <span>{this.state.title}</span>
+        <div className="Cover">
+          { this.state.playlist &&
+            <img className="Image" src={`${this.state.playlist}.png`} alt={this.state.playlist}></img>
+          }
+          <img className="OnAir" src={this.state.onair ? this.props.onair : this.props.offair} alt="onair"></img>
         </div>
       </div>
     );
