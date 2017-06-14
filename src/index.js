@@ -6,9 +6,8 @@ import './index.css';
 
 ReactDOM.render(
   <App
-    url="http://178.32.239.25:2199/rpc/dagaspar/streaminfo.get"
-    onair="onair.png"
-    offair="offair.png"
+    url={window.centova}
+    refresh_in_seconds={15}
   />,
   document.getElementById('centova-on-air')
 );

@@ -2,6 +2,12 @@
 
 display playing music from centova webcast
 
+## publish
+```
+npm run build
+aws s3 cp --recursive build s3://centova-on-air
+```
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

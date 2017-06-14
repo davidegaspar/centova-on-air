@@ -13,15 +13,11 @@ class App extends Component {
     this.handleGet = this.handleGet.bind(this);
   }
   handleGet() {
-    // console.log('here');
-    // this.setState({requestInProgress: true});
     let request = new XMLHttpRequest();
     request.open('GET', this.props.url, true);
-    // request.setRequestHeader('x-api-key', this.props.apiKey);
     request.onload = function() {
-      // this.setState({requestInProgress: false});
       if (request.status >= 200 && request.status < 400) {
-        let resp=JSON.parse(request.responseText);console.log(resp);
+        let resp=JSON.parse(request.responseText);//console.log(resp);
         if (resp.type === 'result') {
           this.setState({
             onair: true,
@@ -49,7 +45,7 @@ class App extends Component {
   }
   componentDidMount(){
     this.handleGet();
-    setInterval(this.handleGet, 5000);
+    setInterval(this.handleGet, this.props.refresh_in_seconds * 1000);
   }
   render() {
     return (
@@ -67,9 +63,9 @@ class App extends Component {
         </div>
         <div className="Cover">
           { this.state.playlist &&
-            <img className="Image" src={`${this.state.playlist}.png`} alt={this.state.playlist}></img>
+            <img className="Image" src={`imagens/${this.state.playlist}.png`} alt={this.state.playlist}></img>
           }
-          <img className="OnAir" src={this.state.onair ? this.props.onair : this.props.offair} alt="onair"></img>
+          <img className="OnAir" src={this.state.onair ? `imagens/onair.png` : `imagens/offair.png`} alt="onair"></img>
         </div>
       </div>
     );
