@@ -25,7 +25,15 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <script>window.centova = 'http://178.32.239.25:2199/rpc/fantasfm/streaminfo.get'</script>
+    <script>
+      window.centova ={
+        url: 'http://178.32.239.25:2199/rpc/fantasfm/streaminfo.get',
+        refresh_in_seconds: 10,
+        onair_true_img: 'http://fantasfm.com.s3-website-us-east-1.amazonaws.com/imagens/onair.png',
+        onair_false_img: 'http://fantasfm.com.s3-website-us-east-1.amazonaws.com/imagens/offair.png',
+        img_folder: 'http://fantasfm.com.s3-website-us-east-1.amazonaws.com/imagens'
+      }
+    </script>
     <div id="centova-on-air"></div>
     <!--
       This HTML file is a template.

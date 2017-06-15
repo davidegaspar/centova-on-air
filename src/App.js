@@ -63,9 +63,9 @@ class App extends Component {
         </div>
         <div className="Cover">
           { this.state.playlist &&
-            <img className="Image" src={`imagens/${this.state.playlist}.png`} alt={this.state.playlist}></img>
+            <img className="Image" src={`${this.props.img_folder}/${this.state.playlist}.png`} alt={this.state.playlist}></img>
           }
-          <img className="OnAir" src={this.state.onair ? `imagens/onair.png` : `imagens/offair.png`} alt="onair"></img>
+          <img className="OnAir" src={this.state.onair ? this.props.onair_true_img : this.props.onair_false_img} alt="onair"></img>
         </div>
       </div>
     );
