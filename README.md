@@ -5,7 +5,24 @@ display playing music from centova webcast
 ## publish
 ```
 npm run build
-aws s3 cp --recursive build s3://centova-on-air
+aws s3 sync --delete build s3://centova-on-air
+```
+
+## use
+```html
+<!-- on air -->
+<link href="http://centova-on-air.s3-website-us-east-1.amazonaws.com/static/css/main.bc6e5342.css" rel="stylesheet">
+<script>
+  window.centova ={
+    url:'http://cast.redeiw.com:2199/rpc/fantasfm/streaminfo.get',
+    refresh_in_seconds: 10,
+    onair_true_img: '/imagens/onair.png',
+    onair_false_img: '/imagens/offair.png',
+    img_folder: '/imagens'
+  }
+</script>
+<script type="text/javascript" src="http://centova-on-air.s3-website-us-east-1.amazonaws.com/static/js/main.336453e8.js"></script>
+<!-- on air -->
 ```
 
 ---

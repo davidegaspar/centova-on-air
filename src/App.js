@@ -18,7 +18,7 @@ class App extends Component {
     request.onload = function() {
       if (request.status >= 200 && request.status < 400) {
         let resp=JSON.parse(request.responseText);//console.log(resp);
-        if (resp.type === 'result') {
+        if (resp.hasOwnProperty('data') && resp.data.length > 0 && resp.data[0].offline === false) {
           this.setState({
             onair: true,
             playlist: resp.data[0].track.hasOwnProperty('playlist') ? resp.data[0].track.playlist.title : null,
